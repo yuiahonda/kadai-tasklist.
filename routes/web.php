@@ -12,5 +12,5 @@
 */
 
 Route::get('/', 'TasklistsController@index');
-
-Route::resource('kadai-tasklist', 'TasklistsController');
+// mod by Ryo Nakajima kadai-tasklist => tasks
+Route::resource('tasks', 'TasklistsController');

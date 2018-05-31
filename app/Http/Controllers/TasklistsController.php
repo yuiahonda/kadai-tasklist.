@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests;
+
+use App\Task;    // add
+
 class TasklistsController extends Controller
 {
     /**
@@ -14,10 +18,10 @@ class TasklistsController extends Controller
     public function index()
     {
         //
-      $messages = Message::all();
+      $tasklists =Task::all();
 
-        return view('messages.index', [
-            'messages' => $messages,
+        return view('tasks.index', [
+            'tasks' => $tasklists,
         ]);
     }
 
@@ -29,10 +33,11 @@ class TasklistsController extends Controller
     public function create()
     {
         //
-        $message = new Message;
+        $tasklist = new Task;
 
-        return view('messages.create', [
-            'message' => $message,
+        return view('tasks.create', [
+            'tasklist' => $tasklist,
+        ]);
     }
 
     /**
@@ -44,9 +49,9 @@ class TasklistsController extends Controller
     public function store(Request $request)
     {
         //
-        $message = new Message;
-        $message->content = $request->content;
-        $message->save();
+        $tasklist = new Task;
+        $tasklist->content = $request->content;
+        $tasklist->save();
 
         return redirect('/');
     }
@@ -60,10 +65,10 @@ class TasklistsController extends Controller
     public function show($id)
     {
         //
-     $message = Message::find($id);
+     $tasklist = Task::find($id);
 
-        return view('messages.show', [
-            'message' => $message,
+        return view('tasks.show', [
+            'tasklist' => $tasklist,
         ]);
     }
 
@@ -76,10 +81,10 @@ class TasklistsController extends Controller
     public function edit($id)
     {
         //
-        $message = Message::find($id);
+        $tasklist =Task::find($id);
 
-        return view('messages.edit', [
-            'message' => $message,
+        return view('tasks.edit', [
+            'tasklist' => $tasklist,
         ]);
     }
 
@@ -93,9 +98,9 @@ class TasklistsController extends Controller
     public function update(Request $request, $id)
     {
         // 
-        $message = Message::find($id);
-        $message->content = $request->content;
-        $message->save();
+        $tasklist = Task::find($id);
+        $tasklist->content = $request->content;
+        $tasklist->save();
 
         return redirect('/');
     }
@@ -109,8 +114,8 @@ class TasklistsController extends Controller
     public function destroy($id)
     {
         //
-        $message = Message::find($id);
-        $message->delete();
+        $tasklist = Task::find($id);
+        $tasklist->delete();
 
         return redirect('/');
     }
