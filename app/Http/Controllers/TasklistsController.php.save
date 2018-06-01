@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\Task;    // add
+use App\Task; // add
 
-class TasklistsController extends Controller
-{
+class TasklistsController extends Controller {
     /**
      * Display a listing of the resource.
      *
@@ -17,11 +16,11 @@ class TasklistsController extends Controller
      */
     public function index()
     {
-        //$tasklists->$tasks　modified by yui
-      $tasks =Task::all();
+        //
+      $tasklists =Task::all();
 
         return view('tasks.index', [
-            'tasks' => $tasks,
+            'tasks' => $tasklists,
         ]);
     }
 
@@ -33,17 +32,17 @@ class TasklistsController extends Controller
     public function create()
     {
         //
-        $task = new Task;
+        $tasklist = new Task;
 
         return view('tasks.create', [
-            'task' => $task,
+            'tasklist' => $tasklist,
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -52,9 +51,9 @@ class TasklistsController extends Controller
             'content' => 'required|max:191',
         ]);
         //
-        $task = new Task;
-        $task->content = $request->content;
-        $task->save();
+        $tasklist = new Task;
+        $tasklist->content = $request->content;
+        $tasklist->save();
 
         return redirect('/');
     }
@@ -62,48 +61,48 @@ class TasklistsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
-     $task = Task::find($id);
+     $tasklist = Task::find($id);
 
         return view('tasks.show', [
-            'task' => $task,
+            'tasklist' => $tasklist,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
      
     public function edit($id)
     {
         //
-        $task =Task::find($id);
+        $tasklist =Task::find($id);
 
         return view('tasks.edit', [
-            'task' => $task,
+            'tasklist' => $tasklist,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        // 
-        $task = Task::find($id);
-        $task->content = $request->content;
+        //
+        $tasklist = Task::find($id);
+        $tasklist->content = $request->content;
         $tasklist->save();
 
         return redirect('/');
@@ -112,14 +111,14 @@ class TasklistsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-        $task = Task::find($id);
-        $task->delete();
+        $tasklist = Task::find($id);
+        $tasklist->delete();
 
         return redirect('/');
     }
