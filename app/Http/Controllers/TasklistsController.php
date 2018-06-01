@@ -50,9 +50,9 @@ class TasklistsController extends Controller
     {
          $this->validate($request, [
              
-            'status' => 'required|max:255',
+            'status' => 'required|max:10',
             
-            'content' => 'required|max:255',
+            'content' => 'required|max:191',
         ]);
         //
         $task = new Task;
@@ -108,9 +108,9 @@ class TasklistsController extends Controller
         // 
         $this->validate($request, [
             
-            'status' => 'required|max:255', 
+            'status' => 'required|max:10', 
             
-            'content' => 'required|max:255',
+            'content' => 'required|max:191',
         ]);
 
         $task = Task::find($id);
