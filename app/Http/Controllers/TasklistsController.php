@@ -102,9 +102,13 @@ class TasklistsController extends Controller
     public function update(Request $request, $id)
     {
         // 
+        $this->validate($request, [
+            'content' => 'required|max:255',
+        ]);
+
         $task = Task::find($id);
         $task->content = $request->content;
-        $tasklist->save();
+        $task->save();
 
         return redirect('/');
     }
