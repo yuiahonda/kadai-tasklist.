@@ -2,20 +2,25 @@
 
 @section('content')
 
-    <h1>メッセージ新規作成ページ</h1>
-    
-
-
+    <h1>New Task Page</h1>
+<div class="row">
+    <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6 ">
+        
     {!! Form::model($task, ['route' => 'tasks.store']) !!}
 
-        {!! Form::label('status','ステータス:') !!}
-        {!! Form::text('status') !!}
+        <div class="form-group">
+             {!! Form::label('status','status:') !!}
+             {!! Form::text('status', null, ['class' =>'form-control']) !!}
+        </div> 
         
-        {!! Form::label('content', 'メッセージ:') !!}
-        {!! Form::text('content') !!}
+        <div class="form-group">
+            {!! Form::label('content', 'task:') !!}
+            {!! Form::text('content', null, ['class' => 'form-control']) !!}
+        </div>
 
-        {!! Form::submit('投稿') !!}
+        {!! Form::submit('Post', ['class' => 'btn btn-danger']) !!}
 
     {!! Form::close() !!}
-
+    </div>
+</div>    
 @endsection

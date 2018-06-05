@@ -1,20 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
+   <table class="table table-bordered">
+       <tr>
+           <th>id</th>
+           <td>{{ $task->id }}</td>
+       </tr>
+       <tr>
+           <th>status</th>
+           <td> {{ $task->status}}</td>
+       </tr>
+       <tr>
+           <th>task</th>
+           <td>{{ $task->content }}</td>
+       </tr>
+   </table>
 
-    <h1>id = {{ $task->id }} のメッセージ詳細ページ</h1>
-    
-    
-    <p>ステータス: {{ $task->status}}</p> 
-    
-    <p>メッセージ：{{ $task->content }}</p>
-
-    {!! link_to_route('tasks.edit', 'このメッセージ編集', ['id' => $task->id]) !!}
+    {!! link_to_route('tasks.edit', 'edit task', ['id' => $task->id], ['class' => 'btn btn-primary']) !!}
 
     {!! Form::model($task, ['route' => ['tasks.destroy', $task->id], 'method' => 'delete']) !!}
     
-        {!! Form::submit('削除') !!}
-        
+        {!! Form::submit('delete',['class' => 'btn btn-warning']) !!}
+
     {!! Form::close() !!}
 
 @endsection
